@@ -40,20 +40,21 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void validardatos(Editable email, Editable pass){
-        if(email.equals("") || pass.equals("")){
+        if(email.equals("") || pass.equals("")) {
             cartel.setValue("debe completar todos los datos");
 
-        }else{
-            if(email.equals("ivanalau31@gmail.com") && pass.equals("ivana")){
-
+        }
+        if(email.equals("i@g.com") && pass.equals("i"))
+        {
+                cartel.setValue("si");
                 Intent intent= new Intent(getApplication().getApplicationContext(),MainActivity.class);
-                getApplication().startActivity(intent);
+                getApplication().getApplicationContext().startActivity(intent);
 
-            }else {
+        }else {
                 cartel.setValue("Email o contraseña incorrectos");
 
-            }
         }
+
 
     }
 }
