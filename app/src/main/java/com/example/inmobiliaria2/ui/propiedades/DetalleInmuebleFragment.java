@@ -1,0 +1,86 @@
+package com.example.inmobiliaria2.ui.propiedades;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.inmobiliaria2.R;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link DetalleInmuebleFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class DetalleInmuebleFragment extends Fragment {
+    ImageView foto;
+    private TextView direccion,ambiente,tipo,uso,precio;
+    private CheckBox disponible;
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public DetalleInmuebleFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment DetalleInmuebleFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static DetalleInmuebleFragment newInstance(String param1, String param2) {
+        DetalleInmuebleFragment fragment = new DetalleInmuebleFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view=inflater.inflate(R.layout.fragment_detalle_inmueble, container, false);
+        foto=view.findViewById(R.id.ivFoto);
+        direccion=view.findViewById(R.id.tvDireccion);
+        ambiente=view.findViewById(R.id.tvAmbientes);
+        tipo=view.findViewById(R.id.tvTipo);
+        uso=view.findViewById(R.id.tvUso);
+        precio=view.findViewById(R.id.tvprecio);
+        disponible=view.findViewById(R.id.cbDisponible);
+        int f=getArguments().getInt("foto");
+        String d=getArguments().getString("direccion");
+        String p=getArguments().getString("precio");
+        foto.setImageAlpha(f);
+        direccion.setText(d);
+        precio.setText(p);
+        return view;
+    }
+}
