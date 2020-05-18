@@ -1,15 +1,23 @@
 package com.example.inmobiliaria2;
 
+import android.app.Application;
+import android.content.Intent;
 import android.text.Editable;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class LoginViewModel extends ViewModel {
+public class LoginViewModel extends AndroidViewModel {
     private MutableLiveData<String> email;
     private MutableLiveData<String>pass;
     private MutableLiveData<String>cartel;
+
+    public LoginViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     public LiveData<String> getEmail(){
         if(email==null){
@@ -31,16 +39,19 @@ public class LoginViewModel extends ViewModel {
         return cartel;
     }
 
-    public Boolean validardatos(Editable email, Editable pass){
+    public void validardatos(Editable email, Editable pass){
         if(email.equals("") || pass.equals("")){
             cartel.setValue("debe completar todos los datos");
-            return false;
+
         }else{
             if(email.equals("ivanalau31@gmail.com") && pass.equals("ivana")){
-                return true;
+
+                Intent intent= new Intent(getApplication().getApplicationContext(),MainActivity.class);
+                getApplication().startActivity(intent);
+
             }else {
                 cartel.setValue("Email o contraseña incorrectos");
-                return false;
+
             }
         }
 

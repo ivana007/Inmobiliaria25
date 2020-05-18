@@ -86,6 +86,13 @@ public class Propiedades extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_propiedades, container, false);
         lv=view.findViewById(R.id.propiedades);//hago referencia al listView
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //llamar al fragmen detlle inmueble
+
+            }
+        });
         pvm.cargarDatos();
 
         return view;

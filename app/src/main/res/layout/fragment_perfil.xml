@@ -197,15 +197,6 @@
         app:layout_constraintTop_toBottomOf="@+id/pass"
         android:onClick="habilitar"/>
 
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:text="Guardar Cambios"
-        android:enabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

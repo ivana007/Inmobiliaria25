@@ -1,6 +1,8 @@
 package com.example.inmobiliaria2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -18,16 +20,26 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         iniciarVista();
+        lvm= ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(LoginViewModel.class);
+        lvm.getCartel().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                tvCartelError.setText(s);
+
+            }
+        });
+
     }
     public  void iniciarVista(){
         etEmail=findViewById(R.id.etMail);
         etPass=findViewById(R.id.etPass);
+        tvCartelError=findViewById(R.id.etcartel);
         etEmail.setText("");
         etPass.setText("");
 
     }
-    public void validar(View v){
-        boolean res=lvm.validardatos(etEmail.getText(), etPass.getText());
+    public void validar(View view){
+        lvm.validardatos(etEmail.getText(), etPass.getText());
 
     }
 }

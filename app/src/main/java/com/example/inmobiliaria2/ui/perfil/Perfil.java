@@ -3,6 +3,7 @@ package com.example.inmobiliaria2.ui.perfil;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -69,6 +70,13 @@ private PerfilViewModel vm;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(PerfilViewModel.class);
+        vm.getPropietario().observe(this, new Observer<Propietario>() {
+            @Override
+            public void onChanged(Propietario propietario) {
+                etdni.setText(propietario.getDni());
+                etApellido.setText(propietario.getApellido());
+            }
+        });
         View view=inflater.inflate(R.layout.fragment_perfil, container, false);
 
         etdni =view.findViewById(R.id.dni);
@@ -78,8 +86,8 @@ private PerfilViewModel vm;
         etEmail=view.findViewById(R.id.email);
         etPass=view.findViewById(R.id.pass);
         btEditar=view.findViewById(R.id.btnEditar);
-        btGuardar=view.findViewById(R.id.btnGuardar);
-        vm.cargarDatos(view);
+        vm.cargarDatos();
+
 
         return view;
     }
@@ -91,6 +99,7 @@ private PerfilViewModel vm;
         etTelefono.setEnabled(true);
         etEmail.setEnabled(true);
         etPass.setEnabled(true);
+        btEditar.setText("Guardar");
     }
 
 }
