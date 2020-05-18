@@ -40,7 +40,7 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void validardatos(Editable email, Editable pass){
-        if(email.equals("") || pass.equals("")) {
+        if(email.equals(" ") || pass.equals(" ")) {
             cartel.setValue("debe completar todos los datos");
 
         }
