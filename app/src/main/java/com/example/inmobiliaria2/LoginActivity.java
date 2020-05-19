@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     public void validar(View view){
-        lvm.validardatos(etEmail.getText(), etPass.getText());
+            lvm.validardatos(etEmail.getText().toString(), etPass.getText().toString());
 
     }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import com.example.inmobiliaria2.R;
  */
 public class Perfil extends Fragment {
 private EditText etdni,etApellido,etnombre,etTelefono,etEmail,etPass;
-private Button btEditar,btGuardar;
+private Button btEditar;
 private PerfilViewModel vm;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,9 +76,13 @@ private PerfilViewModel vm;
             public void onChanged(Propietario propietario) {
                 etdni.setText(propietario.getDni());
                 etApellido.setText(propietario.getApellido());
+                etnombre.setText(propietario.getNombre());
+                etTelefono.setText(propietario.getTelefono());
+                etEmail.setText(propietario.getEmail());
+                etPass.setText(propietario.getPass());
             }
         });
-        View view=inflater.inflate(R.layout.fragment_perfil, container, false);
+        final View view=inflater.inflate(R.layout.fragment_perfil, container, false);
 
         etdni =view.findViewById(R.id.dni);
         etApellido=view.findViewById(R.id.apellido);
@@ -86,20 +91,26 @@ private PerfilViewModel vm;
         etEmail=view.findViewById(R.id.email);
         etPass=view.findViewById(R.id.pass);
         btEditar=view.findViewById(R.id.btnEditar);
+
+            btEditar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etdni.setEnabled(true);
+                    etApellido.setEnabled(true);
+                    etnombre.setEnabled(true);
+                    etTelefono.setEnabled(true);
+                    etEmail.setEnabled(true);
+                    etPass.setEnabled(true);
+                    btEditar.setText("guardar");
+                    btEditar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Navigation.findNavController(view).navigate(R.id.nav_home);
+                        }
+                    });
+                }
+            });
         vm.cargarDatos();
-
-
         return view;
     }
-    public void habilitar(View view)
-    {
-        etdni.setEnabled(true);
-        etApellido.setEnabled(true);
-        etnombre.setEnabled(true);
-        etTelefono.setEnabled(true);
-        etEmail.setEnabled(true);
-        etPass.setEnabled(true);
-        btEditar.setText("Guardar");
-    }
-
 }

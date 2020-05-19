@@ -39,15 +39,15 @@ public class LoginViewModel extends AndroidViewModel {
         return cartel;
     }
 
-    public void validardatos(Editable email, Editable pass){
-        if(email.equals(" ") || pass.equals(" ")) {
+    public void validardatos(String email, String pass){
+        if(email.equals("") || pass.equals("")) {
             cartel.setValue("debe completar todos los datos");
 
         }
         if(email.equals("i@g.com") && pass.equals("i"))
         {
-                cartel.setValue("si");
                 Intent intent= new Intent(getApplication().getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplication().getApplicationContext().startActivity(intent);
 
         }else {
