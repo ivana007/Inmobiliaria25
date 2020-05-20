@@ -1,6 +1,7 @@
 package com.example.inmobiliaria2.ui.propiedades;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 
 import com.example.inmobiliaria2.R;
 
@@ -34,13 +36,28 @@ public class ListaAdapterInmueble extends ArrayAdapter {
             itemView=li.inflate(R.layout.iteminmueble,parent,false);
 
         }
-        Inmueble inmueble=inmuebleList.get(position);
+        final Inmueble inmueble=inmuebleList.get(position);
         ImageView foto=itemView.findViewById(R.id.foto);
         foto.setImageResource(inmueble.getFoto());
         TextView direccion=itemView.findViewById(R.id.direccion);
         direccion.setText(inmueble.getDireccion());
         TextView precio=itemView.findViewById(R.id.precio);
         precio.setText(inmueble.getPrecio()+"");
+        TextView idInmueble= itemView.findViewById(R.id.tvId);
+        idInmueble.setText(inmueble.getId()+"");
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle=new Bundle();
+                bundle.putInt("IdInmueble",inmueble.getId());
+                bundle.putString("direccion",inmueble.getDireccion());
+                bundle.putInt("foto",inmueble.getFoto());
+                bundle.putString("precio",inmueble.getPrecio()+"");
+
+                Navigation.findNavController(v).navigate(R.id.detalleInmuebleFragment,bundle);
+            }
+        });
+
         return itemView;
     }
 

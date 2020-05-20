@@ -44,7 +44,7 @@ public class LoginViewModel extends AndroidViewModel {
             cartel.setValue("debe completar todos los datos");
 
         }
-        if(email.equals("i@g.com") && pass.equals("i"))
+        if(email.equals("i") && pass.equals("i"))
         {
                 Intent intent= new Intent(getApplication().getApplicationContext(),MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

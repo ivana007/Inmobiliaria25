@@ -3,6 +3,8 @@ package com.example.inmobiliaria2.ui.propiedades;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,10 @@ import com.example.inmobiliaria2.R;
  * create an instance of this fragment.
  */
 public class DetalleInmuebleFragment extends Fragment {
-    ImageView foto;
-    private TextView direccion,ambiente,tipo,uso,precio;
+    private  ImageView foto;
+    private TextView direccion,ambiente,tipo,uso,precio,disponibilidad;
     private CheckBox disponible;
+    private DetalleInmuebleViewModel vm;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,26 +64,60 @@ public class DetalleInmuebleFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(DetalleInmuebleViewModel.class);
+      vm.getdisponible().observe(this, new Observer<String>() {
+          @Override
+          public void onChanged(String s) {
+                disponibilidad.setText(s);
+          }
+      });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_detalle_inmueble, container, false);
+        final View view=inflater.inflate(R.layout.fragment_detalle_inmueble, container, false);
+
         foto=view.findViewById(R.id.ivFoto);
         direccion=view.findViewById(R.id.tvDireccion);
         ambiente=view.findViewById(R.id.tvAmbientes);
         tipo=view.findViewById(R.id.tvTipo);
         uso=view.findViewById(R.id.tvUso);
         precio=view.findViewById(R.id.tvprecio);
+        disponibilidad=view.findViewById(R.id.idDisponibilidad);
         disponible=view.findViewById(R.id.cbDisponible);
-        int f=getArguments().getInt("foto");
-        String d=getArguments().getString("direccion");
-        String p=getArguments().getString("precio");
-        foto.setImageAlpha(f);
-        direccion.setText(d);
-        precio.setText(p);
+        //boolean estado =disponible.isChecked();
+        disponible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vm.cambiarDisponiblilidad(disponible.isChecked());
+            }
+        });
+
+       int i=getArguments().getInt("IdInmueble");
+        Inmueble inmueble1= new Inmueble(1,R.drawable.casa1,"Las Flores 123",3,"Casa","Residencial",12000,true);
+        Inmueble inmueble2= new Inmueble(2,R.drawable.local1,"La Calendula  123",1,"Local","Comercial",10000,false);
+        if(i == inmueble1.getId()){
+            foto.setImageResource(inmueble1.getFoto());
+            direccion.setText(inmueble1.getDireccion());
+            ambiente.setText(inmueble1.getAmbientes()+"");
+            tipo.setText(inmueble1.getTipo());
+            uso.setText(inmueble1.getUso());
+            precio.setText(inmueble1.getPrecio()+"");
+            disponible.setChecked(inmueble1.isDisponible());
+            disponibilidad.setText("Disponible");
+        }
+        if(i == inmueble2.getId()){
+            foto.setImageResource(inmueble2.getFoto());
+            direccion.setText(inmueble2.getDireccion());
+            ambiente.setText(inmueble2.getAmbientes()+"");
+            tipo.setText(inmueble2.getTipo());
+            uso.setText(inmueble2.getUso());
+            precio.setText(inmueble2.getPrecio()+"");
+            disponible.setChecked(inmueble2.isDisponible());
+            disponibilidad.setText("No Disponible");
+        }
         return view;
     }
 }

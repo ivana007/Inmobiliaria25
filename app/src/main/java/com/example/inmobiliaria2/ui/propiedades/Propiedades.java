@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.inmobiliaria2.R;
+import com.example.inmobiliaria2.ui.perfil.PerfilViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,17 +70,19 @@ public class Propiedades extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            pvm= new PropiedadesViewModel();
-           pvm= ViewModelProviders.of(this).get(PropiedadesViewModel.class);
-            pvm.getListaDeInmuebles().observe(this, new Observer<List<Inmueble>>() {
-                @Override
-                public void onChanged(List<Inmueble> inmuebles) {
-                    ArrayAdapter<Inmueble> adapter =new ListaAdapterInmueble(getContext(),R.layout.iteminmueble,inmuebles,getLayoutInflater());
-                    //ArrayAdapter<Inmueble>adapter=new ArrayAdapter<Inmueble>(getContext(),R.layout.iteminmueble,inmuebles);
-                    lv.setAdapter(adapter);
-                }
-            });
+
+
         }
+        pvm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(PropiedadesViewModel.class);
+
+
+        pvm.getListaDeInmuebles().observe(this, new Observer<List<Inmueble>>() {
+            @Override
+            public void onChanged(List<Inmueble> inmuebles) {
+                ListaAdapterInmueble adapter =new ListaAdapterInmueble(getContext(),R.layout.iteminmueble,inmuebles,getLayoutInflater());
+                lv.setAdapter(adapter);
+            }
+        });
     }
 
     @Override
@@ -86,13 +91,6 @@ public class Propiedades extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_propiedades, container, false);
         lv=view.findViewById(R.id.propiedades);//hago referencia al listView
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //llamar al fragmen detlle inmueble
-
-            }
-        });
         pvm.cargarDatos();
 
         return view;
