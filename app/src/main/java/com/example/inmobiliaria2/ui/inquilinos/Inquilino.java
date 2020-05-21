@@ -1,16 +1,26 @@
 package com.example.inmobiliaria2.ui.inquilinos;
 
 public class Inquilino {
+    private int idInquilino;
     private String dni;
     private String nombre;
     private String Apellido;
     private String telefono;
 
-    public Inquilino(String dni, String nombre, String apellido, String telefono) {
+    public Inquilino(int idInquilino, String dni, String nombre, String apellido, String telefono) {
+        this.idInquilino = idInquilino;
         this.dni = dni;
         this.nombre = nombre;
         Apellido = apellido;
         this.telefono = telefono;
+    }
+
+    public int getIdInquilino() {
+        return idInquilino;
+    }
+
+    public void setIdInquilino(int idInquilino) {
+        this.idInquilino = idInquilino;
     }
 
     public String getDni() {

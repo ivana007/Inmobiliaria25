@@ -3,12 +3,20 @@ package com.example.inmobiliaria2.ui.inquilinos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.inmobiliaria2.R;
+import com.example.inmobiliaria2.ui.propiedades.Inmueble;
+import com.example.inmobiliaria2.ui.propiedades.ListaAdapterInmueble;
+import com.example.inmobiliaria2.ui.propiedades.PropiedadesViewModel;
+
+import java.util.List;
 
 
 /**
@@ -17,6 +25,8 @@ import com.example.inmobiliaria2.R;
  * create an instance of this fragment.
  */
 public class Inquilinos extends Fragment {
+    private ListView lv;
+    private InquilinoViewModel vm;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -55,12 +65,26 @@ public class Inquilinos extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(InquilinoViewModel.class);
+
+
+        vm.getListaDeInmuebles().observe(this, new Observer<List<Inmueble>>() {
+            @Override
+            public void onChanged(List<Inmueble> inmuebles) {
+               ListaAdapterInquilino adapter =new ListaAdapterInquilino(getContext(),R.layout.iteminmueble,inmuebles,getLayoutInflater());
+                lv.setAdapter(adapter);
+            }
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inquilinos, container, false);
+        View view=inflater.inflate(R.layout.fragment_inquilinos, container, false);
+        lv=view.findViewById(R.id.propiedadesInquilino);//hago referencia al listView
+        vm.cargarDatos();
+
+        return view;
     }
 }

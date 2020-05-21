@@ -71,6 +71,18 @@ public class DetalleInmuebleFragment extends Fragment {
                 disponibilidad.setText(s);
           }
       });
+      vm.getinmuebleMutableLiveData().observe(this, new Observer<Inmueble>() {
+          @Override
+          public void onChanged(Inmueble inmueble) {
+              foto.setImageResource(inmueble.getFoto());
+              direccion.setText(inmueble.getDireccion());
+              ambiente.setText(inmueble.getAmbientes()+"");
+              tipo.setText(inmueble.getTipo());
+              uso.setText(inmueble.getUso());
+              precio.setText(inmueble.getPrecio()+"");
+              disponible.setChecked(inmueble.isDisponible());
+          }
+      });
     }
 
     @Override
@@ -96,28 +108,8 @@ public class DetalleInmuebleFragment extends Fragment {
         });
 
        int i=getArguments().getInt("IdInmueble");
-        Inmueble inmueble1= new Inmueble(1,R.drawable.casa1,"Las Flores 123",3,"Casa","Residencial",12000,true);
-        Inmueble inmueble2= new Inmueble(2,R.drawable.local1,"La Calendula  123",1,"Local","Comercial",10000,false);
-        if(i == inmueble1.getId()){
-            foto.setImageResource(inmueble1.getFoto());
-            direccion.setText(inmueble1.getDireccion());
-            ambiente.setText(inmueble1.getAmbientes()+"");
-            tipo.setText(inmueble1.getTipo());
-            uso.setText(inmueble1.getUso());
-            precio.setText(inmueble1.getPrecio()+"");
-            disponible.setChecked(inmueble1.isDisponible());
-            disponibilidad.setText("Disponible");
-        }
-        if(i == inmueble2.getId()){
-            foto.setImageResource(inmueble2.getFoto());
-            direccion.setText(inmueble2.getDireccion());
-            ambiente.setText(inmueble2.getAmbientes()+"");
-            tipo.setText(inmueble2.getTipo());
-            uso.setText(inmueble2.getUso());
-            precio.setText(inmueble2.getPrecio()+"");
-            disponible.setChecked(inmueble2.isDisponible());
-            disponibilidad.setText("No Disponible");
-        }
+       vm.cargarDatos(i);
+
         return view;
     }
 }
