@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class Contrato {
   private int numeroContrato;
-  private LocalDate fechaAlta;
-  private LocalDate fechaBaja;
+  private String fechaAlta;
+  private String fechaBaja;
   private String dniGarante;
   private int idInmueble;
   private int idInquilino;
@@ -18,7 +18,7 @@ public class Contrato {
   private Inquilino inquilino;
   private double precio;
 
-  public Contrato(int numeroContrato, LocalDate fechaAlta, LocalDate fechaBaja, String dniGarante, int idInmueble, int idInquilino, Inmueble inmueble, Inquilino inquilino, double precio) {
+  public Contrato(int numeroContrato, String fechaAlta, String fechaBaja, String dniGarante, int idInmueble, int idInquilino, Inmueble inmueble, Inquilino inquilino, double precio) {
     this.numeroContrato = numeroContrato;
     this.fechaAlta = fechaAlta;
     this.fechaBaja = fechaBaja;
@@ -62,19 +62,19 @@ public class Contrato {
     this.numeroContrato = numeroContrato;
   }
 
-  public LocalDate getFechaAlta() {
+  public String getFechaAlta() {
     return fechaAlta;
   }
 
-  public void setFechaAlta(LocalDate fechaAlta) {
+  public void setFechaAlta(String fechaAlta) {
     this.fechaAlta = fechaAlta;
   }
 
-  public LocalDate getFechaBaja() {
+  public String getFechaBaja() {
     return fechaBaja;
   }
 
-  public void setFechaBaja(LocalDate fechaBaja) {
+  public void setFechaBaja(String fechaBaja) {
     this.fechaBaja = fechaBaja;
   }
 

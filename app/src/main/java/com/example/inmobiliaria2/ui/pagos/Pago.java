@@ -7,13 +7,13 @@ import java.time.LocalDate;
 
 public class Pago {
     private int idPago;
-    private LocalDate fechaPago;
+    private String fechaPago;
     private int numeroPago;
     private int idContrato;
     private Contrato contrato;
     private double Importe;
 
-    public Pago(int idPago, LocalDate fechaPago, int numeroPago, int idContrato, Contrato contrato, double importe) {
+    public Pago(int idPago, String fechaPago, int numeroPago, int idContrato, Contrato contrato, double importe) {
         this.idPago = idPago;
         this.fechaPago = fechaPago;
         this.numeroPago = numeroPago;
@@ -30,11 +30,11 @@ public class Pago {
         this.idPago = idPago;
     }
 
-    public LocalDate getFechaPago() {
+    public String getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(LocalDate fechaPago) {
+    public void setFechaPago(String fechaPago) {
         this.fechaPago = fechaPago;
     }
 

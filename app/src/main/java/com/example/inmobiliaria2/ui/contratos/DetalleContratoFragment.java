@@ -23,7 +23,7 @@ import com.example.inmobiliaria2.ui.propiedades.Inmueble;
  * create an instance of this fragment.
  */
 public class DetalleContratoFragment extends Fragment {
-    private TextView tvNumeroContrato,tvFechaAlta,tvFechaBaja,tvPrecio,tvNombreInquilino,tvApellidoInquilino,tvDireccionInmueble;
+    private TextView tvNumeroContrato,tvFechaAlta,tvFechaBaja,tvPrecio,tvNombreInquilino,tvDireccionInmueble,tvdniGarante;
     private DetalleContratoViewModel vm;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,14 +74,13 @@ public class DetalleContratoFragment extends Fragment {
         vm.getcontratoMutableLiveData().observe(this, new Observer<Contrato>() {
             @Override
             public void onChanged(Contrato contrato) {
-                tvNumeroContrato.setText(contrato.getNumeroContrato());
-                tvFechaAlta.setText(contrato.getFechaAlta()+"");
-                tvFechaBaja.setText(contrato.getFechaBaja()+"");
+                tvNumeroContrato.setText(contrato.getNumeroContrato()+"");
+                tvFechaAlta.setText(contrato.getFechaAlta());
+                tvFechaBaja.setText(contrato.getFechaBaja());
+                tvNombreInquilino.setText(contrato.getInquilino().getNombre()+" "+contrato.getInquilino().getApellido());
                 tvPrecio.setText(contrato.getPrecio()+"");
-                tvNombreInquilino.setText(contrato.getInquilino().getNombre());
-                tvApellidoInquilino.setText(contrato.getInquilino().getApellido());
                 tvDireccionInmueble.setText(contrato.getInmueble().getDireccion());
-
+                tvdniGarante.setText(contrato.getDniGarante());
 
             }
         });
@@ -90,9 +89,10 @@ public class DetalleContratoFragment extends Fragment {
         tvFechaAlta=view.findViewById(R.id.fechaAltaContrato);
         tvFechaBaja=view.findViewById(R.id.fechaBajaContrato);
         tvNombreInquilino=view.findViewById(R.id.nombreInquilinoContrato);
-        tvApellidoInquilino=view.findViewById(R.id.apellidoInquilinoContrato);
+
         tvPrecio=view.findViewById(R.id.precioContrato);
         tvDireccionInmueble=view.findViewById(R.id.direccionInmuebleContrato);
+        tvdniGarante=view.findViewById(R.id.dniGarante);
         int i=getArguments().getInt("IdInmueble");
         vm.cargarDatos(i);
         return view;

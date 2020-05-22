@@ -1,4 +1,4 @@
-package com.example.inmobiliaria2.ui.contratos;
+package com.example.inmobiliaria2.ui.pagos;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,11 +18,11 @@ import com.example.inmobiliaria2.ui.propiedades.Inmueble;
 
 import java.util.List;
 
-public class ListaAdapterContrato extends ArrayAdapter {
+public class ListaAdapterPago extends ArrayAdapter {
     private Context context;
     private List<Inmueble> inmuebleList;
     private LayoutInflater li;
-    public ListaAdapterContrato(@NonNull Context context, int resource, @NonNull List<Inmueble> objects, LayoutInflater li) {
+    public ListaAdapterPago(@NonNull Context context, int resource, @NonNull List<Inmueble> objects, LayoutInflater li) {
         super(context, resource, objects);
         this.context=context;
         this.inmuebleList=objects;
@@ -51,7 +51,8 @@ public class ListaAdapterContrato extends ArrayAdapter {
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
                 bundle.putInt("IdInmueble",inmueble.getId());
-                Navigation.findNavController(v).navigate(R.id.detalleContratoFragment,bundle);
+
+                Navigation.findNavController(v).navigate(R.id.detallePagoFragment,bundle);
             }
         });
 

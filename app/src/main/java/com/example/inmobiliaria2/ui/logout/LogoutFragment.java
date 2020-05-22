@@ -1,30 +1,25 @@
-package com.example.inmobiliaria2.ui.pagos;
+package com.example.inmobiliaria2.ui.logout;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.Button;
 
 import com.example.inmobiliaria2.R;
-import com.example.inmobiliaria2.ui.propiedades.Inmueble;
-
-import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Pagos#newInstance} factory method to
+ * Use the {@link LogoutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Pagos extends Fragment {
-    private ListView lv;
-    private PagosViewModel vm;
+public class LogoutFragment extends Fragment {
+    private Button btsi,btno;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,8 +29,9 @@ public class Pagos extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Pagos() {
+    public LogoutFragment() {
         // Required empty public constructor
+
     }
 
     /**
@@ -44,11 +40,11 @@ public class Pagos extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Pagos.
+     * @return A new instance of fragment LogoutFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Pagos newInstance(String param1, String param2) {
-        Pagos fragment = new Pagos();
+    public static LogoutFragment newInstance(String param1, String param2) {
+        LogoutFragment fragment = new LogoutFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,23 +59,27 @@ public class Pagos extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(PagosViewModel.class);
-        vm.getListaDeInmuebles().observe(this, new Observer<List<Inmueble>>() {
-            @Override
-            public void onChanged(List<Inmueble> inmuebles) {
-                ListaAdapterPago adapter=new ListaAdapterPago(getContext(),R.layout.iteminmueble,inmuebles,getLayoutInflater());
-                lv.setAdapter(adapter);
-            }
-        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_pagos, container, false);
-        lv=view.findViewById(R.id.propiedadesPagos);
-        vm.cargarDatos();
+        final View view=inflater.inflate(R.layout.fragment_logout, container, false);
+        btsi=view.findViewById(R.id.btsi);
+        btno=view.findViewById(R.id.btno);
+        btsi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+        btno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_home,null);
+            }
+        });
         return view;
     }
 }
