@@ -1,40 +1,36 @@
 package com.example.inmobiliaria2.ui.propiedades;
 
 public class Inmueble {
-    private int id;
-    private int foto;
+    private int idInmueble;
+   // private int foto;
     private String direccion;
-    private int ambientes;
-    private String tipo;
+    private int cantHambientes;
+    private String tipoInmueble;
     private String uso;
     private double precio;
-    private boolean disponible;
+    private String estado;
+    private int idPropietario;
 
-    public Inmueble(int id, int foto, String direccion, int ambientes, String tipo, String uso, double precio, boolean disponible) {
-        this.id = id;
-        this.foto = foto;
+    public Inmueble() {
+    }
+
+    public Inmueble(int idInmueble, String direccion, int cantHambientes, String tipoInmueble, String uso, double precio, String estado, int idPropietario) {
+        this.idInmueble = idInmueble;
         this.direccion = direccion;
-        this.ambientes = ambientes;
-        this.tipo = tipo;
+        this.cantHambientes = cantHambientes;
+        this.tipoInmueble = tipoInmueble;
         this.uso = uso;
         this.precio = precio;
-        this.disponible = disponible;
+        this.estado = estado;
+        this.idPropietario = idPropietario;
     }
 
-    public int getId() {
-        return id;
+    public int getIdInmueble() {
+        return idInmueble;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getFoto() {
-        return foto;
-    }
-
-    public void setFoto(int foto) {
-        this.foto = foto;
+    public void setIdInmueble(int idInmueble) {
+        this.idInmueble = idInmueble;
     }
 
     public String getDireccion() {
@@ -45,20 +41,20 @@ public class Inmueble {
         this.direccion = direccion;
     }
 
-    public int getAmbientes() {
-        return ambientes;
+    public int getCantHambientes() {
+        return cantHambientes;
     }
 
-    public void setAmbientes(int ambientes) {
-        this.ambientes = ambientes;
+    public void setCantHambientes(int cantHambientes) {
+        this.cantHambientes = cantHambientes;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoInmueble() {
+        return tipoInmueble;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoInmueble(String tipoInmueble) {
+        this.tipoInmueble = tipoInmueble;
     }
 
     public String getUso() {
@@ -77,11 +73,19 @@ public class Inmueble {
         this.precio = precio;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getIdPropietario() {
+        return idPropietario;
+    }
+
+    public void setIdPropietario(int idPropietario) {
+        this.idPropietario = idPropietario;
     }
 }

@@ -23,7 +23,7 @@ public class DetallePagoViewModel extends ViewModel {
         return listaPagoMutableLiveData;
     }
 public  void cargarDatos(int inmu){
-      ArrayList<Pago>listapago=new ArrayList<>();
+      /*ArrayList<Pago>listapago=new ArrayList<>();
     Inmueble inmueble1= new Inmueble(1, R.drawable.casa1,"Las Flores 123",3,"Casa","Residencial",12000,true);
     Inmueble inmueble2= new Inmueble(2,R.drawable.local1,"La Calendula  123",1,"Local","Comercial",10000,false);
     Inquilino i= new Inquilino(1,"33444555","Jose","Perez","123456");
@@ -47,7 +47,7 @@ public  void cargarDatos(int inmu){
         listapago.add(pago5);
         listapago.add(pago6);
         listaPagoMutableLiveData.setValue(listapago);
-    }
+    }*/
 
 }
 }

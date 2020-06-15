@@ -1,28 +1,32 @@
 package com.example.inmobiliaria2.ui.perfil;
 
 public class Propietario {
+    private int idPropietario;
+    private String nombre;
+    private String apellido;
     private String dni;
-   private String nombre;
-   private String Apellido;
    private String telefono;
-   private String Email;
-   private  String pass;
+   private String mail;
+   private String condicion;
 
-    public Propietario(String dni, String nombre, String apellido, String telefono, String email, String pass) {
-        this.dni = dni;
+    public Propietario() {
+    }
+    public Propietario(int idPropietario, String nombre, String apellido, String dni, String telefono, String mail, String condicion) {
+        this.idPropietario = idPropietario;
         this.nombre = nombre;
-        Apellido = apellido;
-        this.telefono = telefono;
-        Email = email;
-        this.pass = pass;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
+        this.apellido = apellido;
         this.dni = dni;
+        this.telefono = telefono;
+        this.mail = mail;
+        this.condicion = condicion;
+    }
+
+    public int getIdPropietario() {
+        return idPropietario;
+    }
+
+    public void setIdPropietario(int idPropietario) {
+        this.idPropietario = idPropietario;
     }
 
     public String getNombre() {
@@ -34,11 +38,19 @@ public class Propietario {
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getTelefono() {
@@ -49,19 +61,19 @@ public class Propietario {
         this.telefono = telefono;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public String getPass() {
-        return pass;
+    public String getCondicion() {
+        return condicion;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setCondicion(String condicion) {
+        this.condicion = condicion;
     }
 }

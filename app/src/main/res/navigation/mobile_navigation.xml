@@ -78,6 +78,9 @@
         <action
             android:id="@+id/action_detalleInmuebleFragment_to_propiedades"
             app:destination="@id/propiedades" />
+        <action
+            android:id="@+id/action_detalleInmuebleFragment_to_nuevoInmuebleFragment"
+            app:destination="@id/nuevoInmuebleFragment" />
     </fragment>
     <fragment
         android:id="@+id/detalleInquilinoFragment"
@@ -111,4 +114,13 @@
         android:name="com.example.inmobiliaria2.ui.logout.LogoutFragment"
         android:label="fragment_logout"
         tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/nuevoInmuebleFragment"
+        android:name="com.example.inmobiliaria2.ui.propiedades.NuevoInmuebleFragment"
+        android:label="fragment_nuevo_inmueble"
+        tools:layout="@layout/fragment_nuevo_inmueble" >
+        <action
+            android:id="@+id/action_nuevoInmuebleFragment_to_propiedades"
+            app:destination="@id/propiedades" />
+    </fragment>
 </navigation>

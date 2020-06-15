@@ -1,5 +1,7 @@
 package com.example.inmobiliaria2.ui.perfil;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,9 +25,10 @@ import com.example.inmobiliaria2.R;
  * create an instance of this fragment.
  */
 public class Perfil extends Fragment {
-private EditText etdni,etApellido,etnombre,etTelefono,etEmail,etPass;
+private EditText etdni,etApellido,etnombre,etTelefono,etEmail;
 private Button btEditar;
 private PerfilViewModel vm;
+private Propietario propietarioGuardar=null;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -78,8 +81,9 @@ private PerfilViewModel vm;
                 etApellido.setText(propietario.getApellido());
                 etnombre.setText(propietario.getNombre());
                 etTelefono.setText(propietario.getTelefono());
-                etEmail.setText(propietario.getEmail());
-                etPass.setText(propietario.getPass());
+                etEmail.setText(propietario.getMail());
+                propietarioGuardar=propietario;
+
             }
         });
         final View view=inflater.inflate(R.layout.fragment_perfil, container, false);
@@ -89,7 +93,7 @@ private PerfilViewModel vm;
         etnombre=view.findViewById(R.id.nombre);
         etTelefono=view.findViewById(R.id.telefono);
         etEmail=view.findViewById(R.id.email);
-        etPass=view.findViewById(R.id.pass);
+
         btEditar=view.findViewById(R.id.btnEditar);
 
             btEditar.setOnClickListener(new View.OnClickListener() {
@@ -100,11 +104,23 @@ private PerfilViewModel vm;
                     etnombre.setEnabled(true);
                     etTelefono.setEnabled(true);
                     etEmail.setEnabled(true);
-                    etPass.setEnabled(true);
+
                     btEditar.setText("guardar");
                     btEditar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            new AlertDialog.Builder(getContext()).setTitle("").setMessage("Desea guardar los datos?").setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    aceptar();
+
+                                }
+                            }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //fijarDatos(null);
+                                }
+                            }).show();
                             Navigation.findNavController(view).navigate(R.id.nav_home);
                         }
                     });
@@ -113,4 +129,15 @@ private PerfilViewModel vm;
         vm.cargarDatos();
         return view;
     }
+    public void aceptar(){
+
+        propietarioGuardar.setDni(etdni.getText().toString());
+        propietarioGuardar.setApellido(etApellido.getText().toString());
+        propietarioGuardar.setNombre(etnombre.getText().toString());
+        propietarioGuardar.setTelefono(etTelefono.getText().toString());
+        propietarioGuardar.setMail(etEmail.getText().toString());
+        //propietarioGuardar.setPassword(pass.getText().toString());
+        vm.actualizar(propietarioGuardar);
+    }
+
 }

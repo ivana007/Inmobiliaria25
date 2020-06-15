@@ -38,20 +38,20 @@ public class ListaAdapterInmueble extends ArrayAdapter {
         }
         final Inmueble inmueble=inmuebleList.get(position);
         ImageView foto=itemView.findViewById(R.id.foto);
-        foto.setImageResource(inmueble.getFoto());
+        //foto.setImageResource(inmueble.getFoto());
         TextView direccion=itemView.findViewById(R.id.direccion);
         direccion.setText(inmueble.getDireccion());
         TextView precio=itemView.findViewById(R.id.precio);
         precio.setText(inmueble.getPrecio()+"");
-        TextView idInmueble= itemView.findViewById(R.id.tvId);
-        idInmueble.setText(inmueble.getId()+"");
+        TextView tipoInmueble= itemView.findViewById(R.id.tvTipoInmueble);
+        tipoInmueble.setText(inmueble.getTipoInmueble());
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
-                bundle.putInt("IdInmueble",inmueble.getId());
+                bundle.putInt("IdInmueble",inmueble.getIdInmueble());
                 bundle.putString("direccion",inmueble.getDireccion());
-                bundle.putInt("foto",inmueble.getFoto());
+               // bundle.putInt("foto",inmueble.getFoto());
                 bundle.putString("precio",inmueble.getPrecio()+"");
 
                 Navigation.findNavController(v).navigate(R.id.detalleInmuebleFragment,bundle);

@@ -39,18 +39,18 @@ public class ListaAdapterPago extends ArrayAdapter {
         }
         final Inmueble inmueble=inmuebleList.get(position);
         ImageView foto=itemView.findViewById(R.id.foto);
-        foto.setImageResource(inmueble.getFoto());
+        //foto.setImageResource(inmueble.getFoto());
         TextView direccion=itemView.findViewById(R.id.direccion);
         direccion.setText(inmueble.getDireccion());
         TextView precio=itemView.findViewById(R.id.precio);
         precio.setText(inmueble.getPrecio()+"");
-        TextView idInmueble= itemView.findViewById(R.id.tvId);
-        idInmueble.setText(inmueble.getId()+"");
+        TextView idInmueble= itemView.findViewById(R.id.tvTipoInmueble);
+        idInmueble.setText(inmueble.getTipoInmueble());
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
-                bundle.putInt("IdInmueble",inmueble.getId());
+                bundle.putInt("IdInmueble",inmueble.getIdInmueble());
 
                 Navigation.findNavController(v).navigate(R.id.detallePagoFragment,bundle);
             }

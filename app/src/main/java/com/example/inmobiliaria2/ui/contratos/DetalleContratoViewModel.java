@@ -27,7 +27,7 @@ public class DetalleContratoViewModel extends ViewModel {
 
     public void cargarDatos(int idInmueble)
     {
-        Inmueble inmueble1= new Inmueble(1, R.drawable.casa1,"Las Flores 123",3,"Casa","Residencial",12000,true);
+        /*Inmueble inmueble1= new Inmueble(1, R.drawable.casa1,"Las Flores 123",3,"Casa","Residencial",12000,true);
         Inmueble inmueble2= new Inmueble(2,R.drawable.local1,"La Calendula  123",1,"Local","Comercial",10000,false);
         Inquilino i= new Inquilino(1,"33444555","Jose","Perez","123456");
         Inquilino i2= new Inquilino(2,"34666777","Martin","Pechz","123456");
@@ -38,6 +38,6 @@ public class DetalleContratoViewModel extends ViewModel {
         }
         if(idInmueble == inmueble2.getId()){
             contratoMutableLiveData.setValue(contrato2);
-        }
+        }*/
     }
 }

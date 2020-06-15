@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.propiedades.NuevoInmuebleFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <EditText
+        android:id="@+id/etTipoInmueble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="casa/dpto/Local"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintTop_toBottomOf="@+id/etCantAmb"
+        tools:layout_editor_absoluteX="137dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <EditText
+        android:id="@+id/etDireccionInmueble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:hint="direccion"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="137dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <EditText
+        android:id="@+id/etCantAmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="cantidad de ambientes"
+        app:layout_constraintTop_toBottomOf="@+id/etDireccionInmueble"
+        tools:layout_editor_absoluteX="137dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+
+    <EditText
+        android:id="@+id/etUsoInmueble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Comercial/Residencial"
+        android:inputType="textPersonName"
+
+        app:layout_constraintTop_toBottomOf="@+id/etTipoInmueble"
+        tools:layout_editor_absoluteX="139dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+    <EditText
+        android:id="@+id/etPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="precio"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/etUsoInmueble"
+        tools:layout_editor_absoluteX="139dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btGuardarInmueble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Guardar"
+        app:layout_constraintTop_toBottomOf="@+id/etPrecio"
+        tools:layout_editor_absoluteX="199dp"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>

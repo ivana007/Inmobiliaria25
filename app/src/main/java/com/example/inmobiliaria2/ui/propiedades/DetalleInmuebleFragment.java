@@ -5,11 +5,14 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,9 +26,12 @@ import com.example.inmobiliaria2.R;
  */
 public class DetalleInmuebleFragment extends Fragment {
     private  ImageView foto;
-    private TextView direccion,ambiente,tipo,uso,precio,disponibilidad;
-    private CheckBox disponible;
+    private EditText direccion,ambiente,tipo,uso,precio,disponibilidad;
+    //private CheckBox disponible;
+    private Button eliminar,modificar,nuevo;
     private DetalleInmuebleViewModel vm;
+    private Inmueble inmuebleElegir=null;
+    private int codigo;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,22 +71,25 @@ public class DetalleInmuebleFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(DetalleInmuebleViewModel.class);
-      vm.getdisponible().observe(this, new Observer<String>() {
+      /*vm.getdisponible().observe(this, new Observer<String>() {
           @Override
           public void onChanged(String s) {
                 disponibilidad.setText(s);
           }
-      });
+      });*/
       vm.getinmuebleMutableLiveData().observe(this, new Observer<Inmueble>() {
           @Override
           public void onChanged(Inmueble inmueble) {
-              foto.setImageResource(inmueble.getFoto());
+              //foto.setImageResource(inmueble.getFoto());
               direccion.setText(inmueble.getDireccion());
-              ambiente.setText(inmueble.getAmbientes()+"");
-              tipo.setText(inmueble.getTipo());
+              ambiente.setText(inmueble.getCantHambientes()+"");
+              tipo.setText(inmueble.getTipoInmueble());
               uso.setText(inmueble.getUso());
               precio.setText(inmueble.getPrecio()+"");
-              disponible.setChecked(inmueble.isDisponible());
+              disponibilidad.setText(inmueble.getEstado());
+              inmuebleElegir=inmueble;
+              /*if(inmueble.getDisponible()=="Disponible")
+              disponible.setChecked(true);*/
           }
       });
     }
@@ -98,18 +107,50 @@ public class DetalleInmuebleFragment extends Fragment {
         uso=view.findViewById(R.id.tvUso);
         precio=view.findViewById(R.id.tvprecio);
         disponibilidad=view.findViewById(R.id.idDisponibilidad);
-        disponible=view.findViewById(R.id.cbDisponible);
+        eliminar=view.findViewById(R.id.btEliminar);
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datos();
+                vm.borrarInmueble(inmuebleElegir);
+
+            }
+        });
+        modificar=view.findViewById(R.id.btModificar);
+        modificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datos();
+                vm.modificarInmueble(inmuebleElegir);
+            }
+        });
+
+        /*disponible=view.findViewById(R.id.cbDisponible);
         //boolean estado =disponible.isChecked();
         disponible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vm.cambiarDisponiblilidad(disponible.isChecked());
             }
+        });*/
+        nuevo=view.findViewById(R.id.btCrearInmueble);
+        nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.nuevoInmuebleFragment);
+            }
         });
-
        int i=getArguments().getInt("IdInmueble");
        vm.cargarDatos(i);
 
         return view;
+    }
+    public  void datos(){
+        inmuebleElegir.setDireccion(direccion.getText().toString());
+        inmuebleElegir.setPrecio(Double.parseDouble(precio.getText().toString()));
+        inmuebleElegir.setUso(uso.getText().toString());
+        inmuebleElegir.setTipoInmueble(tipo.getText().toString());
+        inmuebleElegir.setCantHambientes(Integer.parseInt(ambiente.getText().toString()));
+        inmuebleElegir.setEstado(disponibilidad.getText().toString());
     }
 }
