@@ -112,8 +112,8 @@ public class DetalleInmuebleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 datos();
-                vm.borrarInmueble(inmuebleElegir);
-
+                vm.borrarInmueble(inmuebleElegir.getIdInmueble());
+                Navigation.findNavController(view).navigate(R.id.propiedades);
             }
         });
         modificar=view.findViewById(R.id.btModificar);

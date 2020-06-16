@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.inmobiliaria2.ui.propiedades.Inmueble;
 
@@ -17,10 +19,14 @@ import retrofit2.Response;
 
 public class NuevoInmuebleViewModel extends AndroidViewModel {
     private Context context;
+
     public NuevoInmuebleViewModel(@NonNull Application application) {
         super(application);
         context=application.getApplicationContext();
     }
+public void mostrar(){
+    Toast.makeText(context,"  estoy en vm",Toast.LENGTH_LONG).show();
+}
     public void guardarInmueble(Inmueble inmueble){
         SharedPreferences sharedPreferences=context.getSharedPreferences("token",0);
         String claveToken=sharedPreferences.getString("token","-1");

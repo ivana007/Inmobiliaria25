@@ -17,7 +17,7 @@
         android:ems="10"
         android:hint="casa/dpto/Local"
         android:inputType="textPersonName"
-        android:text="Name"
+
         app:layout_constraintTop_toBottomOf="@+id/etCantAmb"
         tools:layout_editor_absoluteX="137dp"
         tools:ignore="MissingConstraints" />
@@ -85,4 +85,6 @@
         app:layout_constraintTop_toBottomOf="@+id/etPrecio"
         tools:layout_editor_absoluteX="199dp"
         tools:ignore="MissingConstraints" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

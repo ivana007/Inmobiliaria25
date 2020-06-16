@@ -91,18 +91,18 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
 
 
     }
-    public  void borrarInmueble(Inmueble inmu){
+    public  void borrarInmueble(int id){
         SharedPreferences sharedPreferences=context.getSharedPreferences("token",0);
         String token=sharedPreferences.getString("token","-1");
 
 
-        Call<Inmueble> i= ApiClient.getMyApiClient().EliminarInmueble(token,inmu);
+        Call<Inmueble> i= ApiClient.getMyApiClient().EliminarInmueble(token,id);
         i.enqueue(new Callback<Inmueble>() {
             @Override
             public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                 if(response.isSuccessful()){
                    // Inmueble in=response.body();
-                    Toast.makeText(context,"inmueble Eliminado"+response.body(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"inmueble Eliminado",Toast.LENGTH_LONG).show();
 
                 }
             }

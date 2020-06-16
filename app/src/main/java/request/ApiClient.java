@@ -15,14 +15,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public class ApiClient {
     private static final String PATH="http://192.168.101.233:45455/api/";
@@ -56,7 +53,7 @@ public class ApiClient {
         Call<List<Inmueble>>misInmuebles(@Header("Authorization")String token);
 
         @DELETE("inmuebles/{id}")
-        Call<Inmueble>EliminarInmueble(@Header("Authorization")String token,@Body Inmueble inmueble);
+        Call<Inmueble>EliminarInmueble(@Header("Authorization")String token,@Path("id") int  IdInmueble);
         @PUT("inmuebles/{id}")
         Call<Inmueble>CambiarInmueble(@Header("Authorization")String token,@Body Inmueble inmueble);
         @POST("inmuebles")

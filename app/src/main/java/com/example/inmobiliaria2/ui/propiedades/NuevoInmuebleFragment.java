@@ -3,15 +3,20 @@ package com.example.inmobiliaria2.ui.propiedades;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.inmobiliaria2.R;
+
+import java.io.IOException;
 
 
 /**
@@ -21,9 +26,10 @@ import com.example.inmobiliaria2.R;
  */
 public class NuevoInmuebleFragment extends Fragment {
     private Button guardar;
+    private TextView cartel;
     private EditText etDireccion,etCantAmbientes,etTipoInmueble,etUso,etPrecio;
     private NuevoInmuebleViewModel vm;
-    private Inmueble inmueble;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,7 +67,9 @@ public class NuevoInmuebleFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-           vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(NuevoInmuebleViewModel.class);
+           //vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(NuevoInmuebleViewModel.class);
+            vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(NuevoInmuebleViewModel.class);
+
         }
     }
 
@@ -79,19 +87,22 @@ public class NuevoInmuebleFragment extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inmueble=new Inmueble();
-                inmueble.setDireccion(etDireccion.getText().toString());
-                inmueble.setCantHambientes(Integer.parseInt(etCantAmbientes.getText().toString()));
-                inmueble.setUso(etUso.getText().toString());
-                inmueble.setTipoInmueble(etTipoInmueble.getText().toString());
-                inmueble.setPrecio(Double.parseDouble(etPrecio.getText().toString()));
-                inmueble.setEstado("Disponible");
-                inmueble.setIdInmueble(0);//se genera cuando lo guardo
-                inmueble.setIdPropietario(0);//lo recupero con el token
-                vm.guardarInmueble(inmueble);
+                datos();
+
             }
         });
         return view;
+    }
+    public void datos(){
+        Inmueble inmueble= new Inmueble();
+        inmueble.setDireccion(etDireccion.getText().toString());
+        inmueble.setEstado("Disponible");
+        inmueble.setTipoInmueble(etTipoInmueble.getText().toString());
+        inmueble.setUso(etUso.getText().toString());
+        inmueble.setCantHambientes(Integer.parseInt(etCantAmbientes.getText().toString()));
+        inmueble.setPrecio(Double.parseDouble(etPrecio.getText().toString()));
+        vm.guardarInmueble(inmueble);
+
     }
 
 }

@@ -4,24 +4,33 @@ public class Inmueble {
     private int idInmueble;
    // private int foto;
     private String direccion;
-    private int cantHambientes;
+    private String estado;
     private String tipoInmueble;
     private String uso;
+    private int cantHambientes;
     private double precio;
-    private String estado;
     private int idPropietario;
 
     public Inmueble() {
     }
 
-    public Inmueble(int idInmueble, String direccion, int cantHambientes, String tipoInmueble, String uso, double precio, String estado, int idPropietario) {
-        this.idInmueble = idInmueble;
+    public Inmueble(String direccion, String estado, String tipoInmueble, String uso, int cantHambientes, double precio) {
         this.direccion = direccion;
-        this.cantHambientes = cantHambientes;
+        this.estado = estado;
         this.tipoInmueble = tipoInmueble;
         this.uso = uso;
+        this.cantHambientes = cantHambientes;
         this.precio = precio;
+    }
+
+    public Inmueble(int idInmueble, String direccion, String estado, String tipoInmueble, String uso, int cantHambientes, double precio, int idPropietario) {
+        this.idInmueble = idInmueble;
+        this.direccion = direccion;
         this.estado = estado;
+        this.tipoInmueble = tipoInmueble;
+        this.uso = uso;
+        this.cantHambientes = cantHambientes;
+        this.precio = precio;
         this.idPropietario = idPropietario;
     }
 
