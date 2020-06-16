@@ -68,9 +68,10 @@ public class NuevoInmuebleFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
            //vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(NuevoInmuebleViewModel.class);
-            vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(NuevoInmuebleViewModel.class);
+
 
         }
+        vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(NuevoInmuebleViewModel.class);
     }
 
     @Override
